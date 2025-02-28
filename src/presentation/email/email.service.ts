@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 import {envs} from "../../config/plugins/env.plugin";
+import {LogRepository} from "../../domain/repository/log.repository";
+import {LogEntity, LogSeverityLevel} from "../../domain/entities/log.entity";
 
 interface SendMailOptions {
     to: string|string[]
@@ -22,6 +24,10 @@ export class EmailService {
         }
     })
 
+    constructor(private readonly logRepository: LogRepository) {
+
+    }
+
     async sendEmail(options: SendMailOptions): Promise<boolean> {
         const {to, subject, htmlBody, attachments = []} = options
         try {
@@ -31,10 +37,21 @@ export class EmailService {
                 html: htmlBody,
                 attachments: attachments
             })
-            console.log(sentInformation)
+            const log = new LogEntity({
+                level: LogSeverityLevel.low,
+                message: 'Email sent',
+                origin: 'email.service.ts'
+            })
+            await this.logRepository.saveLog(log)
 
             return true
         } catch (error) {
+            const log = new LogEntity({
+                level: LogSeverityLevel.high,
+                message: 'Email did not send',
+                origin: 'email.service.ts'
+            })
+            await this.logRepository.saveLog(log)
             return false
         }
     }
