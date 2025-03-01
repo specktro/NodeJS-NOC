@@ -1,23 +1,14 @@
-import {CronService} from "./cron/cron-service";
-import {CheckService} from "../domain/use-cases/checks/check-service";
 import {LogRepositoryImpl} from "../infrastructure/repositories/log.repository.impl";
 import {FileSystemDatasource} from "../infrastructure/datasources/file-system.datasource";
+import {EmailService} from "./email/email.service";
+import {SendEmailLogs} from "../domain/use-cases/email/send-logs";
 
 const logRepository = new LogRepositoryImpl(new FileSystemDatasource())
+const emailService = new EmailService()
 
 export class Server {
     public static start() {
         console.log('Server started...')
-
-        CronService.createJob(
-            '*/5 * * * * *',
-            () => {
-                new CheckService(
-                    logRepository,
-                    () => console.log('Success'),
-                    (error) => console.log(error)
-                ).execute('https://google.com')
-            }
-        )
+        new SendEmailLogs(emailService, logRepository).execute(['specktro@nonull.mx', 'miguelangel.gomezrivero@gmail.com'])
     }
 }
