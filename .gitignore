@@ -4,4 +4,7 @@
 .idea/
 /logs
 /mongo
-.env
+/postgres
+prisma/**/migrations
+*.env*
+!.env.template
