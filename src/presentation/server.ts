@@ -15,7 +15,7 @@ export class Server {
     public static async start() {
         console.log('Server started...')
 
-        const logs = await logRepository.getLogs(LogSeverityLevel.medium)
+        const logs = await logRepository.getLogs(LogSeverityLevel.low)
         console.log(logs)
         // new SendEmailLogs(emailService, logRepository).execute(['specktro@nonull.mx', 'miguelangel.gomezrivero@gmail.com'])
         // CronService.createJob(
