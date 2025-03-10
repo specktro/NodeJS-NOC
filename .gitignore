@@ -1,6 +1,10 @@
-node_modules/
+/node_modules
 .DS_Store
-coverage/
+/coverage
 .idea/
-logs/
-.env
+/logs
+/mongo
+/postgres
+prisma/**/migrations
+*.env*
+!.env.template
