@@ -2,7 +2,7 @@ import {LogModel, MongoDatabase} from "../../../../src/data/mongo";
 import {envs} from "../../../../src/config/plugins/env.plugin";
 import mongoose from "mongoose";
 
-describe('log.model.test.ts', () => {
+describe('log.model.test.ts tests', () => {
     beforeAll(async () => {
         await MongoDatabase.connect({
             mongoUrl: envs.MONGO_URL,

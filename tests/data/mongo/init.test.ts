@@ -1,7 +1,7 @@
 import {MongoDatabase} from "../../../src/data/mongo";
 import mongoose from "mongoose";
 
-describe('Init MongoDB', () => {
+describe('Init MongoDB tests', () => {
     afterAll(() => {
         mongoose.connection.close()
     })

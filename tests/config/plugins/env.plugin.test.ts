@@ -1,6 +1,6 @@
 import {envs} from "../../../src/config/plugins/env.plugin";
 
-describe('env.plugin.ts', () => {
+describe('env.plugin.ts tests', () => {
     test('Should return env options', () => {
         expect(envs).toEqual({
             PORT: 3000,

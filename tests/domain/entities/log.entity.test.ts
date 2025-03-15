@@ -1,6 +1,6 @@
 import {LogEntity, LogSeverityLevel} from "../../../src/domain/entities/log.entity";
 
-describe('log.entity.ts', () => {
+describe('log.entity.ts test', () => {
     const dataObject = {
         message: 'Test log',
         level: LogSeverityLevel.high,

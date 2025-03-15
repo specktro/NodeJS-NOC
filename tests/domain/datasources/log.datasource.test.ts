@@ -1,7 +1,7 @@
 import {LogDatasource} from "../../../src/domain/datasources/log.datasource";
 import {LogEntity, LogSeverityLevel} from "../../../src/domain/entities/log.entity";
 
-describe('log.datasource.ts', () => {
+describe('log.datasource.ts tests', () => {
     const testLog  = new LogEntity({
         origin: 'log.datasource.test.ts',
         message: 'test message',
