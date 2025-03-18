@@ -10,12 +10,12 @@ type ErrorCallback = (error: string) => void
 
 export class CheckServiceMultiple implements CheckServiceMultipleUseCase {
     constructor(
-        private readonly logRepository: LogRepository[],
+        private readonly logRepositories: LogRepository[],
         private readonly successCallback: SuccessCallback,
         private readonly errorCallback: ErrorCallback) {}
 
     private callLogs(log: LogEntity) {
-        this.logRepository.forEach((logRepository) => {
+        this.logRepositories.forEach((logRepository) => {
             logRepository.saveLog(log)
         })
     }
@@ -43,7 +43,7 @@ export class CheckServiceMultiple implements CheckServiceMultipleUseCase {
                 origin: 'check-service.ts',
             })
             this.callLogs(log)
-            console.log(error)
+            this.errorCallback && this.errorCallback(errorMessage)
             return false
         }
     }

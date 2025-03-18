@@ -37,7 +37,7 @@ export class CheckService implements CheckServiceUseCase {
                 origin: 'check-service.ts',
             })
             await this.logRepository.saveLog(log)
-            console.log(error)
+            this.errorCallback && this.errorCallback(errorMessage)
             return false
         }
     }

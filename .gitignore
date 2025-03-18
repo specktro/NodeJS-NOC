@@ -3,8 +3,8 @@
 /coverage
 .idea/
 /logs
-/mongo
-/postgres
+/mongo**
+/postgres**
 prisma/**/migrations
 *.env*
 !.env.template
